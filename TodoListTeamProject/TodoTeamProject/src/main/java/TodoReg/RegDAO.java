@@ -1,4 +1,4 @@
-package userReg;
+package TodoReg;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -33,6 +33,37 @@ public class RegDAO {
 		}
 		return con;
 
+	}
+	
+	public void updateUserPw(User u) {
+		con = dbcon();
+		String sql = "update usertbl set pw = ? where id = ?";
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setString(1, u.getPw());
+			pst.setString(2, u.getId());
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		close(pst,con);
+		
+	}
+	public void updateUserTel(User u) {
+		con = dbcon();
+		String sql = "update usertbl set tel = ? where id = ?";
+		try {
+			pst = con.prepareStatement(sql);
+			pst.setString(1, u.getTel());
+			pst.setString(2, u.getId());
+			pst.executeUpdate();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		close(pst,con);
+		
 	}
 	
 	public void insertUser(User u) {
